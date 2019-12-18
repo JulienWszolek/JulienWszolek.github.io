@@ -21,7 +21,7 @@ git push -f
 speedPushN() {
 git add .
 git commit --amend --no-edit -n
-git push -f
+git push -f --no-verify
 }
 
 ########################

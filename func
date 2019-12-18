@@ -5,6 +5,8 @@ alias git-sp="speedPush"
 alias git-sp-n="speedPushN"
 alias drm="dockerRmAll"
 alias drmv="dockerRmAllVolumes"
+alias dc-bu="dockerComposeBuildAndUpDetached"
+alias dc-e="dockerComposeExec"
 
 ########################
 # GIT SPEED PUSH       #
@@ -37,6 +39,28 @@ docker rm $(docker ps -a -q)
 ########################
 dockerRmAllVolumes() {
 docker volume rm $(docker volume ls -q)
+}
+
+########################
+# DC BUILD AND UP -D   #
+########################
+dockerComposeBuildAndUpDetached() {
+docker-compose build
+docker-compose up -d
+}
+
+########################
+# DC EXEC              #
+# $1 = container       #
+# $2 = command         #
+########################
+dockerComposeExec () {
+if [ $1 ] && [ $2 ]
+then
+docker-compose exec $1 $2
+else
+    echo "Error : bad arguments"
+fi
 }
 
 ########################
